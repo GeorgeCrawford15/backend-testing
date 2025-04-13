@@ -23,8 +23,9 @@ app.get('/', (request, response) => {
     response.status(201).send({msg: 'Hello World!'});
 });
 
+
 /*
-For reference on query parameters and how they are used below: 
+HOW QUERY PARAMETERS ARE USED IN THE CODE BELOW: 
 If the user sends a request like this:
 /api/users?filter=name&value=john
 Then:
