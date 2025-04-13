@@ -10,12 +10,20 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^4.21.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
   },
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeCrawford15/backend-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GeorgeCrawford15/backend-testing/issues"
+  },
+  "homepage": "https://github.com/GeorgeCrawford15/backend-testing#readme",
+  "description": ""
 }
