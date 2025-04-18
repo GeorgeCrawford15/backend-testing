@@ -2,8 +2,17 @@ import express, { request } from 'express';
 
 const app = express();
 
+/* 
+When express.json() middleware processes an incoming request with a Content-Type of application/json, 
+it takes the raw JSON data from the request body and transforms it into a JavaScript object. 
+This object is then assigned to the request.body property of the request object (request).
+*/
+app.use(express.json());
+
 const PORT = process.env.PORT || 3000;
 
+// This is a mock database. It's an array of objects that represents users.
+// In a real application, this data would be stored in a database and retrieved using a database query.
 const mockUsers = [
     {id: 1, name: 'john', displayName: 'John'},
     {id: 2, name: 'will', displayName: 'Will'},
@@ -63,7 +72,16 @@ app.get('/api/users', (request, response) => {
     } else {
         return response.send(mockUsers); // This sends all users when filter and value are not provided.
     }
+});
 
+app.post('/api/users', (request, response) => {
+    console.log(request.body); // This logs the body of the request to the console.
+    const { body } = request; // This destructures the body property from the request object.
+
+    // The spread syntax (the ...body) takes all the own properties of the request.body object and inserts them as individual key-value pairs into the new newUser object.
+    const newUser = { id: mockUsers[mockUsers.length - 1].id + 1, ...body } // Overall, this line creates a new user object with an id and the properties from the request body.
+    mockUsers.push(newUser); // This adds the new user to the mockUsers array.
+    return response.status(201).send(newUser); // This sends a 201 Created status code to the client.
 });
 
 app.get('/api/users/:id', (request, response) => { // :id is a route parameter
